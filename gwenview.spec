@@ -8,6 +8,7 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 # Source0-md5:	3712b6e70da3c9fd1636995940676a7f
+Patch0:		%{name}-desktops.patch
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1
@@ -33,6 +34,7 @@ obs³ugiwane przez zainstalowan± wersjê Qt.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
@@ -42,6 +44,7 @@ cp -f /usr/share/automake/config.sub admin
 	--with-qt-libraries=%{_libdir}
 
 %{__make}
+%{__make} -C po
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -49,9 +52,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
+%{__make} -C po install \
+	DESTDIR=$RPM_BUILD_ROOT 
 
 sed -i 's/Categories=.*/Categories=Qt;KDE;Graphics;Viewer;/' \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/xx
 
 %clean
 rm -rf $RPM_BUILD_ROOT
