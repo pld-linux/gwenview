@@ -1,12 +1,16 @@
+
+%define		_snap		040509
+
 Summary:	Simple image viewer for KDE
 Summary(pl):	Prosta przegl±darka obrazków dla KDE
 Name:		gwenview
-Version:	1.1.0
-Release:	1
+Version:	1.1.2
+Release:	0.%{_snap}.1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
-# Source0-md5:	31a768d17479176d884e173a6bca6af7
+#Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	89bd24fd78c67021cd6371f7454cc12a
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.0
@@ -29,14 +33,18 @@ bibliotekê Qt, wiêc przegl±darka obs³uguje wszystkie formaty
 obs³ugiwane przez zainstalowan± wersjê Qt.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
 
 %build
 cp -f /usr/share/automake/config.sub admin
+
+#export UNSERMAKE=/usr/share/unsermake/unsermake
+
+%{__make} -f admin/Makefile.common cvs
+
 %configure \
-	--with-qt-libraries=%{_libdir} \
 	--disable-rpath \
-	--enable-final
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
@@ -44,24 +52,39 @@ cp -f /usr/share/automake/config.sub admin
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir}
 
-sed -i 's/Categories=Qt;KDE;Graphics/&;Viewer/' \
+sed -i 's/Categories=.*/Categories=Qt;KDE;Graphics;Viewer;/' \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
 
 
-#%%find_lang %{name}
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%%files -f %{name}.lang
-%files
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS CREDITS ChangeLog NEWS README TODO
+%doc gwenview/{AUTHORS,CREDITS,ChangeLog,NEWS,README,TODO}
 %attr(755,root,root) %{_bindir}/gwenview
+%{_libdir}/libgwenviewcore.la
+%attr(755,root,root) %{_libdir}/libgwenviewcore.so
+%attr(755,root,root) %{_libdir}/libgwenviewcore.so.*.*.*
+%{_libdir}/kde3/libgvdirpart.la
+%attr(755,root,root) %{_libdir}/kde3/libgvimagepart.so
+%{_libdir}/kde3/libgvimagepart.la
+%attr(755,root,root) %{_libdir}/kde3/libgvdirpart.so
+%{_datadir}/apps/gvdirpart
+%{_datadir}/apps/gvimagepart
 %{_datadir}/apps/gwenview
 %{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
+%{_datadir}/services/gvdirpart.desktop
+%{_datadir}/services/gvimagepart.desktop
 %{_desktopdir}/kde/gwenview.desktop
 %{_iconsdir}/[!l]*/*/apps/gwenview.png
+%{_iconsdir}/[!l]*/*/apps/imagegallery.png
 %{_mandir}/man1/*
