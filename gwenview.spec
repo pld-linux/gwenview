@@ -5,11 +5,10 @@ Version:	0.15.0
 Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia 
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/gwenview/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	kdelibs-devel >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 Gwenview is an image viewer for KDE.
