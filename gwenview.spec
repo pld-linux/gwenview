@@ -4,7 +4,7 @@ Name:		gwenview
 Version:	0.17.1
 Release:	1
 License:	GPL
-Group:		X11/Applications/Multimedia 
+Group:		X11/Applications/Multimedia
 # Source0-md5:	a1c9e6896307c9b11f4ba8bb08715da0
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 URL:		http://gwenview.sourceforge.net/
