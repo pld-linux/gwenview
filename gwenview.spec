@@ -2,7 +2,7 @@ Summary:	Simple image viewer for KDE
 Summary(pl):	Prosta przegl±darka obrazków dla KDE
 Name:		gwenview
 Version:	1.0.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
@@ -45,9 +45,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-# temporary, until glibc update
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{nb,no}
 
 sed -i 's/Categories=Qt;KDE;Graphics/&;Viewer/' \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
