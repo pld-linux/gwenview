@@ -1,12 +1,12 @@
 Summary:	Simple image viewer for KDE
 Summary(pl):	Prosta przegl±darka obrazków dla KDE
 Name:		gwenview
-Version:	1.0.0
+Version:	1.0.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
-# Source0-md5:	e19e0ed3fb6ce857241fcaf2845d7271
+# Source0-md5:	98bc89e3bda282cf192f84bd1fc03fdf
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	sed >= 4.0
