@@ -59,6 +59,7 @@ sed -i 's/Categories=.*/Categories=Qt;KDE;Graphics;Viewer;/' \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/xx
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS CREDITS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/gwenview
