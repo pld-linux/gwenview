@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 # Source0-md5:	e19e0ed3fb6ce857241fcaf2845d7271
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	kdelibs-devel >= 3.0
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,6 +46,10 @@ rm -rf $RPM_BUILD_ROOT
 
 # temporary, until glibc update
 mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{nb,no}
+
+sed -i 's/Categories=Qt;KDE;Graphics/&;Viewer/' \
+	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
+
 
 %find_lang %{name}
 
