@@ -7,6 +7,7 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 # Source0-md5:	f2c7a984274b8010da25ad20ef62db5a
+Patch0:		%{name}-pl.po.patch
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1
@@ -31,6 +32,7 @@ obs³ugiwane przez zainstalowan± wersjê Qt.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
