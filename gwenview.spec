@@ -7,7 +7,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
-# Source0-md5:	5d98703b8ab5dab0d9ae21361159f4c5
+# Source0-md5:	2c1bf6f363165273350888e0a7e00168
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1
