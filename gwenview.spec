@@ -27,7 +27,7 @@ bibliotekê Qt, wiêc przegl±darka obs³uguje wszystkie formaty
 obs³ugiwane przez zainstalowan± wersjê Qt.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
