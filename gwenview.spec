@@ -11,6 +11,7 @@ Patch0:		%{name}-pl.po.patch
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1
+BuildRequires:	sed >= 4.0
 #BuildRequires:	unsermake >= 040511
 Requires:	kdebase-core
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
