@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-pl.po.patch
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	sed >= 4.0
 #BuildRequires:	unsermake >= 040511
