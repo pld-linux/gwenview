@@ -1,0 +1,28 @@
+diff -ur gwenview-1.3.1.org/src/imageutils/jpegcontent.cpp gwenview-1.3.1/src/imageutils/jpegcontent.cpp
+--- gwenview-1.3.1.org/src/imageutils/jpegcontent.cpp	2005-11-20 18:08:51.000000000 +0100
++++ gwenview-1.3.1/src/imageutils/jpegcontent.cpp	2006-03-25 15:27:36.894595500 +0100
+@@ -37,9 +37,9 @@
+ #include <kdebug.h>
+ 
+ // Exif
+-#include "exif-data.h"
+-#include "exif-ifd.h"
+-#include "exif-utils.h"
++#include <libexif/exif-data.h>
++#include <libexif/exif-ifd.h>
++#include <libexif/exif-utils.h>
+ 
+ // Local
+ #include "imageutils/imageutils.h"
+diff -ur gwenview-1.3.1.org/src/imageutils/jpeg-data.h gwenview-1.3.1/src/imageutils/jpeg-data.h
+--- gwenview-1.3.1.org/src/imageutils/jpeg-data.h	2005-11-20 18:08:51.000000000 +0100
++++ gwenview-1.3.1/src/imageutils/jpeg-data.h	2006-03-25 15:26:50.727710250 +0100
+@@ -22,7 +22,7 @@
+ #define __JPEG_DATA_H__
+ 
+ #include "jpeg-marker.h"
+-#include "exif-data.h"
++#include <libexif/exif-data.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
