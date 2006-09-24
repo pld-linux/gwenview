@@ -7,14 +7,14 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
 # Source0-md5:	82f15fca494ffd2aabad9828c5c66d94
-Patch0:		%{name}-libexif.patch
+Patch0:		kde-common-PLD.patch
+Patch1:		%{name}-libexif.patch
 URL:		http://gwenview.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	libexif-devel
 BuildRequires:	sed >= 4.0
-#BuildRequires:	unsermake >= 040511
 Requires:	kdebase-core
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,13 +36,16 @@ obs³ugiwane przez zainstalowan± wersjê Qt.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
-cp -f /usr/share/automake/config.sub admin
-
+cp -f /usr/share/automake/config.sub .
 %configure \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir}
+
+# This is to quote CXXLD
+%{__perl} admin/am_edit src/{gv{{image,dir}part,core},app}/Makefile.in
 
 %{__make}
 
