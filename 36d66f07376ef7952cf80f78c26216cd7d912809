@@ -1,0 +1,3 @@
+- Killing %{_pixmapsdir}
+- Added --disable-rpath
+- Release 1
