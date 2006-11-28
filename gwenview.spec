@@ -1,22 +1,27 @@
 Summary:	Simple image viewer for KDE
 Summary(pl):	Prosta przegl±darka obrazków dla KDE
 Name:		gwenview
-Version:	1.4.0
-Release:	1
+Version:	1.4.1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
-# Source0-md5:	82f15fca494ffd2aabad9828c5c66d94
+# Source0-md5:	df5df7ace3e7bec73f96bf1646ab27b0
 Patch0:		kde-common-PLD.patch
-Patch1:		%{name}-libexif.patch
+Patch1:		kde-ac260-lt.patch
 URL:		http://gwenview.sourceforge.net/
+BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	exiv2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	libexif-devel
+BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
 Requires:	kdebase-core
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define         _noautoreq      libtool(.*)
 
 %description
 Gwenview is an image viewer for KDE.
@@ -40,6 +45,9 @@ obs³ugiwane przez zainstalowan± wersjê Qt.
 
 %build
 cp -f /usr/share/automake/config.sub .
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
+%{__make} -f admin/Makefile.common cvs
 %configure \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir}
