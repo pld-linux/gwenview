@@ -1,5 +1,5 @@
 Summary:	Simple image viewer for KDE
-Summary(pl):	Prosta przegl±darka obrazków dla KDE
+Summary(pl.UTF-8):   Prosta przeglÄ…darka obrazkÃ³w dla KDE
 Name:		gwenview
 Version:	1.4.1
 Release:	2
@@ -31,12 +31,12 @@ easy navigation in your file hierarchy. Image loading is done by the
 Qt library, so it supports all image formats your Qt installation
 supports.
 
-%description -l pl
-Gwenview to przegl±darka obrazków dla KDE. Ma okno z drzewem katalogów
-oraz okno z list± plików w celu zapewnienia ³atwej nawigacji w
-hierarchii plików. Wczytywanie obrazków jest wykonywane przez
-bibliotekê Qt, wiêc przegl±darka obs³uguje wszystkie formaty
-obs³ugiwane przez zainstalowan± wersjê Qt.
+%description -l pl.UTF-8
+Gwenview to przeglÄ…darka obrazkÃ³w dla KDE. Ma okno z drzewem katalogÃ³w
+oraz okno z listÄ… plikÃ³w w celu zapewnienia Å‚atwej nawigacji w
+hierarchii plikÃ³w. Wczytywanie obrazkÃ³w jest wykonywane przez
+bibliotekÄ™ Qt, wiÄ™c przeglÄ…darka obsÅ‚uguje wszystkie formaty
+obsÅ‚ugiwane przez zainstalowanÄ… wersjÄ™ Qt.
 
 %prep
 %setup -q
