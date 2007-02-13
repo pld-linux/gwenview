@@ -1,5 +1,5 @@
 Summary:	Simple image viewer for KDE
-Summary(pl.UTF-8):   Prosta przeglądarka obrazków dla KDE
+Summary(pl.UTF-8):	Prosta przeglądarka obrazków dla KDE
 Name:		gwenview
 Version:	1.4.1
 Release:	2
