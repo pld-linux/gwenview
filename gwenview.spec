@@ -16,9 +16,11 @@ BuildRequires:	exiv2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	libexif-devel
+BuildRequires:	libkipi-devel
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
 Requires:	kdebase-core
+Suggests:	kipi-plugins
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _noautoreq      libtool(.*)
