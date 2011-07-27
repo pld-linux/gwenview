@@ -1,29 +1,22 @@
-Summary:	Simple image viewer for KDE
-Summary(pl.UTF-8):	Prosta przeglądarka obrazków dla KDE
-Name:		gwenview
-Version:	1.4.2
-Release:	4
-License:	GPL
-Group:		X11/Applications/Multimedia
-Source0:	http://dl.sourceforge.net/gwenview/%{name}-%{version}.tar.bz2
-# Source0-md5:	33c3fc68224d57f5f5cc4d34b48293c6
-Patch0:		kde-common-PLD.patch
-Patch1:		kde-ac260-lt.patch
-URL:		http://gwenview.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	exiv2-devel
-BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 3.1
-BuildRequires:	libexif-devel
-BuildRequires:	libkipi-devel
-BuildRequires:	libtool
-BuildRequires:	sed >= 4.0
-Requires:	kdebase-core
-Suggests:	kipi-plugins
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%define		_state		stable
+%define		orgname		gwenview
+%define		qtver		4.7.3
 
-%define         _noautoreq      libtool(.*)
+Summary:	K Desktop Environment - Simple image viewer
+Summary(pl.UTF-8):	K Desktop Environment - Prosta przeglądarka obrazków
+Name:		gwenview
+Version:	4.7.0
+Release:	1
+License:	GPL
+Group:		X11/Applications/Graphics
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+# Source0-md5:	a90285ba6e7a84125ba4191e1027730b
+URL:		http://www.kde.org/
+BuildRequires:	kde4-kdelibs-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	shared-desktop-ontologies-devel
+BuildRequires:	soprano-devel
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Gwenview is an image viewer for KDE.
@@ -41,67 +34,48 @@ bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
+%setup -q -n %{orgname}-%{version}
 
 %build
-cp -f /usr/share/automake/config.sub .
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
-%{__make} -f admin/Makefile.common cvs
-%configure \
-	--disable-rpath \
-	--with-qt-libraries=%{_libdir}
-
-# This is to quote CXXLD
-%{__perl} admin/am_edit src/{gv{{image,dir}part,core},app}/Makefile.in
-
+install -d build
+cd build
+%cmake \
+	..
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build/ install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
-
-sed -i 's/Categories=.*/Categories=Qt;KDE;Graphics;Viewer;/' \
-	$RPM_BUILD_ROOT%{_desktopdir}/kde/gwenview.desktop
-
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/xx
-
-%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc AUTHORS src/CREDITS NEWS README
 %attr(755,root,root) %{_bindir}/gwenview
-%attr(755,root,root) %{_libdir}/kde3/gwenview.so
-%attr(755,root,root) %{_libdir}/kde3/libgvdirpart.so
-%attr(755,root,root) %{_libdir}/kde3/libgvimagepart.so
-%attr(755,root,root) %{_libdir}/libgwenviewcore.so
-%attr(755,root,root) %{_libdir}/libgwenviewcore.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkdeinit_gwenview.so
-%{_libdir}/kde3/gwenview.la
-%{_libdir}/kde3/libgvdirpart.la
-%{_libdir}/kde3/libgvimagepart.la
-%{_libdir}/libgwenviewcore.la
-%{_libdir}/libkdeinit_gwenview.la
-%{_datadir}/apps/gvdirpart
-%{_datadir}/apps/gvimagepart
-%{_datadir}/apps/gwenview
-%{_datadir}/apps/kconf_update/*
-%{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
-%{_datadir}/config.kcfg/*
-%{_datadir}/services/gvdirpart.desktop
-%{_datadir}/services/gvimagepart.desktop
-%{_desktopdir}/kde/gwenview.desktop
-%{_iconsdir}/[!l]*/*/apps/*
-%{_mandir}/man1/*
+%attr(755,root,root) %{_bindir}/gwenview_importer
+%attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
+%attr(755,root,root) %{_libdir}/kde4/gvpart.so
+%dir %{_datadir}/apps/gwenview
+%dir %{_datadir}/apps/gwenview/cursors
+%{_datadir}/apps/gwenview/cursors/zoom.png
+%{_datadir}/apps/gwenview/fullscreenthemes
+%{_datadir}/apps/gwenview/gwenviewui.rc
+%dir %{_datadir}/apps/gvpart
+%{_datadir}/apps/gvpart/gvpart.rc
+%{_datadir}/kde4/services/gvpart.desktop
+%{_datadir}/kde4/services/ServiceMenus/slideshow.desktop
+%{_desktopdir}/kde4/gwenview.desktop
+%{_datadir}/apps/solid/actions/gwenview_importer.desktop
+%{_datadir}/apps/solid/actions/gwenview_importer_camera.desktop
+%{_iconsdir}/*/*/actions/document-share.png
+%{_iconsdir}/*/*/apps/gwenview.png
+%{_iconsdir}/*/scalable/apps/gwenview.svgz
+%{_kdedocdir}/en/gwenview
