@@ -16,6 +16,7 @@ BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel
+Obsoletes:	kde4-kdegraphics-gwenview
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
