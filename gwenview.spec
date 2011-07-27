@@ -14,6 +14,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 URL:		http://www.kde.org/
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libkipi-devel >= %{version}
 BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel
 Obsoletes:	kde4-kdegraphics-gwenview
