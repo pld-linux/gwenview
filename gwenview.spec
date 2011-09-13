@@ -1,24 +1,24 @@
 %define		_state		stable
 %define		orgname		gwenview
-%define		qtver		4.7.3
+%define		qtver		4.7.4
 
 Summary:	K Desktop Environment - Simple image viewer
 Summary(pl.UTF-8):	K Desktop Environment - Prosta przeglądarka obrazków
 Name:		gwenview
 Version:	4.7.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	54a419ec211ac09f9cc1a70d5556f2cd
 URL:		http://www.kde.org/
-BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	kde4-kdebase-devel
+BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libkipi-devel >= %{version}
 BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel
-Obsoletes:	kde4-kdegraphics-gwenview
+Obsoletes:	kde4-kdegraphics-gwenview < 4.7.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
